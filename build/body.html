@@ -1,0 +1,709 @@
+<header class="topbar">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">◆</span>
+    <div>
+      <h1>SOPOST <span>SNS All-in-one Studio</span></h1>
+      <p>기획 → 카드뉴스 → 멀티채널 글 → 클립 → 캘린더 → 성과까지, 브라우저 하나로</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <span class="badge demo" id="modeBadge"><span class="dot"></span>데모 모드 · 키 0/5</span>
+    <span class="badge" id="brandBadge"><span class="dot"></span>브랜드 규칙 없음</span>
+    <span class="badge" id="saveBadge"><span class="dot"></span>자동 저장</span>
+  </div>
+</header>
+
+<div class="limitbar" id="limitBar">
+  <span>⚠️</span>
+  <span class="grow"><b>브라우저만으로는 안 되는 것</b> — 인스타·틱톡 공식 OAuth 실시간 DM/댓글 감시, 공식 API 실시간 성과 수집, 자동 백그라운드 발행은 <b>불가</b>입니다. 이 앱은 <b>직접 입력 · 파일 내보내기 · 반자동</b>까지만 합니다.</span>
+  <button type="button" id="btnLimits">자세히</button>
+</div>
+
+<div class="shell">
+  <nav class="rail" aria-label="메뉴">
+    <div class="rail-head"><span>MENU</span><b>7</b></div>
+    <button class="nav-btn active" type="button" data-view="home"><span class="num">◍</span><span class="lbl"><b>홈</b><small>오늘 만든 것 · 할 수 있는 것</small></span></button>
+    <button class="nav-btn" type="button" data-view="brand"><span class="num">⚙</span><span class="lbl"><b>설정 · 브랜드 보이스</b><small>키 5개 · A/B 분석</small></span></button>
+    <button class="nav-btn" type="button" data-view="collect"><span class="num">1</span><span class="lbl"><b>기획</b><small>수집 · 리믹스 · 글감 보드</small></span></button>
+    <button class="nav-btn" type="button" data-view="carousel"><span class="num">2</span><span class="lbl"><b>카드뉴스</b><small>5비율 · PNG/ZIP</small></span></button>
+    <button class="nav-btn" type="button" data-view="post"><span class="num">3</span><span class="lbl"><b>포스트 · 스레드</b><small>6채널 · 최대 15개</small></span></button>
+    <button class="nav-btn" type="button" data-view="clip"><span class="num">4</span><span class="lbl"><b>클립 스튜디오</b><small>자르기 · TTS · WebM</small></span></button>
+    <button class="nav-btn" type="button" data-view="calendar"><span class="num">5</span><span class="lbl"><b>월간 캘린더</b><small>예약 · 반복 · JSON</small></span></button>
+    <button class="nav-btn" type="button" data-view="analytics"><span class="num">6</span><span class="lbl"><b>성과 분석</b><small>직접 입력 · 리믹스 제안</small></span></button>
+    <div class="nav-sec">안내</div>
+    <button class="nav-btn" type="button" data-view="limits"><span class="num">!</span><span class="lbl"><b>브라우저 한계</b><small>무엇이 되고 안 되나</small></span></button>
+  </nav>
+
+  <main class="main">
+
+    <!-- ================= 홈 ================= -->
+    <section class="panel show" data-view="home" id="panel-home">
+      <div class="panel-head">
+        <div class="eyebrow">홈</div>
+        <h2>오늘의 SOPOST 작업판</h2>
+        <p>Posteady 스타일로 만들 수 있는 기능을 <b>정적 웹앱</b>에 담았습니다. 서버도, 설치도, 계정 연동도 없이 이 브라우저 안에서만 돌고, 만든 것은 이 기기에만 저장됩니다.</p>
+        <div class="flow">
+          <span class="chip lime">브랜드 보이스</span><span class="chip">→ 기획</span><span class="chip">→ 카드뉴스</span><span class="chip">→ 6채널 글</span><span class="chip">→ 클립 · TTS</span><span class="chip">→ 캘린더</span><span class="chip">→ 성과</span>
+        </div>
+      </div>
+
+      <div class="stat-grid" id="homeStats"></div>
+
+      <div class="split">
+        <div>
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">🕘</span>최근 활동</h3><span class="hint" id="homeActCount">0건</span></div>
+            <div class="act-list" id="homeActivity"></div>
+            <div class="empty" id="homeActEmpty">아직 기록이 없습니다. <b>1 기획</b>에서 글감을 모으거나 <b>카드뉴스</b>를 만들어 보세요.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">🚀</span>빠른 시작</h3></div>
+            <div class="row">
+              <button class="btn primary sm" type="button" data-goto="brand">① 브랜드 보이스 만들기</button>
+              <button class="btn sm" type="button" data-goto="collect">② 글감 모으기</button>
+              <button class="btn sm" type="button" data-goto="carousel">③ 카드뉴스 만들기</button>
+              <button class="btn sm" type="button" data-goto="post">④ 6채널 글 뽑기</button>
+              <button class="btn sm" type="button" data-goto="calendar">⑤ 예약 달력에 넣기</button>
+            </div>
+            <p class="footnote">데모 모드에서도 모든 화면과 PNG·ZIP·WebM·JSON 결과물을 실제로 만들 수 있습니다. Gemini 키를 넣으면 문구가 내 브랜드 말투로 바뀝니다.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">🧭</span>이 앱이 하는 일 / 안 하는 일</h3></div>
+            <table class="cap-tbl">
+              <thead><tr><th>기능</th><th>상태</th></tr></thead>
+              <tbody>
+                <tr><td>브랜드 보이스 A/B · 금지어 규칙</td><td><span class="cap yes">가능</span></td></tr>
+                <tr><td>카드뉴스 PNG·ZIP 저장</td><td><span class="cap yes">가능</span></td></tr>
+                <tr><td>6채널 문구 변환 · 스레드 15개</td><td><span class="cap yes">가능</span></td></tr>
+                <tr><td>영상 자르기 · 자막 · WebM</td><td><span class="cap yes">가능</span></td></tr>
+                <tr><td>예약 달력 · 스케줄러 JSON</td><td><span class="cap yes">가능</span></td></tr>
+                <tr><td>성과 수치 요약 · AI 리믹스 제안</td><td><span class="cap part">직접 입력</span></td></tr>
+                <tr><td>공식 API 실시간 성과 수집</td><td><span class="cap no">불가</span></td></tr>
+                <tr><td>DM·댓글 실시간 감시(OAuth)</td><td><span class="cap no">불가</span></td></tr>
+                <tr><td>정해진 시각 자동 발행</td><td><span class="cap part">PC 스케줄러</span></td></tr>
+              </tbody>
+            </table>
+            <button class="btn ghost sm wide" type="button" data-goto="limits" style="margin-top:10px">전체 표 보기 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 설정 · 브랜드 보이스 ================= -->
+    <section class="panel" data-view="brand" id="panel-brand">
+      <div class="panel-head">
+        <div class="eyebrow">⚙️ 설정 &amp; 브랜드 보이스</div>
+        <h2>내 말투를 먼저 학습시키기</h2>
+        <p>Gemini 키를 최대 5개까지 넣어 두면 한도(429)에 걸린 키를 자동으로 건너뜁니다. 키가 없으면 <b>데모 모드</b>로 모든 기능이 동작합니다. 아래에서 내 글 1~5개를 분석해 <b>브랜드 보이스 A/B</b>를 만들고, 고른 쪽을 <b>Brand Rules</b>로 저장하세요. 저장한 규칙은 카드뉴스·포스트·성과 추천에 전부 쓰입니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">🔑</span>Gemini 키 <span class="hint" style="font-weight:600" id="keySummary">0/5</span></h3>
+          <div class="row">
+            <button class="btn sm" type="button" id="btnTestKeys">연결 테스트</button>
+            <button class="btn ghost sm" type="button" id="btnResetKeys">한도 초과 초기화</button>
+          </div>
+        </div>
+        <div id="keySlots"></div>
+        <div class="note" id="keyTestOut">키는 이 브라우저(localStorage)에만 저장됩니다. 429·401·403이 오면 그 키를 ‘한도초과’로 표시하고 다음 키로 넘어갑니다. 5개가 모두 막히면 데모 모드로 이어집니다.</div>
+        <p class="footnote">발급: <span class="mono">aistudio.google.com/apikey</span> — 카드 등록 없이 만들 수 있습니다. 키를 넣지 않아도 결과물은 모두 만들어집니다(문구가 데모 템플릿이 될 뿐).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">🎙️</span>내 글 샘플 <span class="hint" id="brandSampleCount">0/5</span></h3>
+          <div class="row">
+            <span class="hint">내 글 · 링크 · 샘플 파일</span>
+            <button class="btn ghost sm" type="button" id="btnBrandDemoFill">예시 3개 채우기</button>
+            <button class="btn ghost sm" type="button" id="btnBrandClear">비우기</button>
+          </div>
+        </div>
+        <div class="smp-grid" id="brandSamples"></div>
+        <div class="row" style="margin-top:10px">
+          <label class="btn sm" for="brandFile">📎 샘플 파일(txt·md) 불러오기</label>
+          <input type="file" id="brandFile" class="hidden" accept=".txt,.md,.csv,text/plain">
+          <span class="hint">링크만 넣으면 주소에서 주제를 추정합니다. 정확도를 높이려면 글 본문도 함께 붙여넣으세요(외부 요청 0 유지).</span>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" type="button" id="btnBrandGen">✨ 브랜드 보이스 A/B 만들기</button>
+          <span class="hint" id="brandStatus">샘플 1개 이상이면 만들 수 있습니다.</span>
+        </div>
+      </div>
+
+      <div class="card" id="brandResultCard">
+        <div class="card-head"><h3><span class="ico">🆚</span>A/B 비교 — 마음에 드는 쪽을 고르세요</h3><span class="badge" id="abModeBadge">대기</span></div>
+        <div class="abgrid" id="brandAB">
+          <div class="empty" style="grid-column:1/-1">아직 브랜드 보이스가 없습니다. 위에서 <b>A/B 만들기</b>를 눌러 주세요.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">📌</span>Brand Rules <span class="hint" id="brandRulesState">저장 안 됨</span></h3>
+          <div class="row">
+            <button class="btn sm" type="button" id="btnSaveRules">규칙 저장</button>
+            <button class="btn ghost sm" type="button" id="btnRulesReset">기본값</button>
+          </div>
+        </div>
+        <div class="grid2">
+          <div>
+            <label class="fld"><span class="lb">브랜드 톤 <em>한 문장</em></span><input type="text" id="ruleTone" placeholder="예: 담백하게 사실만, 존댓말, 과장 없이"></label>
+            <label class="fld"><span class="lb">후킹 패턴 <em>줄바꿈으로 구분</em></span><textarea id="ruleHooking" rows="3" placeholder="숫자로 시작하기&#10;질문 던지기&#10;결론 먼저"></textarea></label>
+            <label class="fld"><span class="lb">CTA 문구 <em>줄바꿈으로 구분</em></span><textarea id="ruleCta" rows="3" placeholder="저장해 두고 하나씩 해보세요&#10;댓글로 알려주세요"></textarea></label>
+          </div>
+          <div>
+            <label class="fld"><span class="lb">금지어 <em>입력 후 Enter · 글 전체에서 실시간 검사</em></span></label>
+            <div class="inline" style="margin-bottom:8px">
+              <input type="text" id="ruleBannedInput" placeholder="예: 대박, 미친, 최저가, 무조건" style="flex:1;min-width:0">
+              <button class="btn sm" type="button" id="btnAddBanned">추가</button>
+            </div>
+            <div class="chips" id="ruleBanned" style="margin-bottom:10px"></div>
+            <label class="fld"><span class="lb">필수 문구 <em>포스트·첫 댓글에 자동 제안</em></span></label>
+            <div class="inline" style="margin-bottom:8px">
+              <input type="text" id="ruleRequiredInput" placeholder="예: 광고 포함, 자세한 건 프로필 링크" style="flex:1;min-width:0">
+              <button class="btn sm" type="button" id="btnAddRequired">추가</button>
+            </div>
+            <div class="chips" id="ruleRequired"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 1 기획 ================= -->
+    <section class="panel" data-view="collect" id="panel-collect">
+      <div class="panel-head">
+        <div class="eyebrow">1 · 기획 — Collector &amp; Picker</div>
+        <h2>재료를 모으고, 쓸 글감을 고르기</h2>
+        <p>링크·텍스트·파일을 모아 두고, 잘된 글을 <b>리믹스</b>해 새 각도로 바꿉니다. AI 글감과 내 글감을 한 보드에서 골라 카드뉴스나 포스트로 바로 넘깁니다.</p>
+      </div>
+
+      <div class="split">
+        <div>
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">📥</span>수집</h3><span class="hint" id="collectCount">0개</span></div>
+            <div class="pill-tabs" id="ctTabs" style="margin-bottom:10px">
+              <button type="button" class="on" data-ct="link">🔗 링크</button>
+              <button type="button" data-ct="text">📝 텍스트</button>
+              <button type="button" data-ct="file">📎 파일</button>
+            </div>
+            <div id="ctPane-link">
+              <label class="fld"><span class="lb">링크 <em>한 줄에 하나</em></span><textarea id="ctLink" rows="3" placeholder="https://www.instagram.com/p/...&#10;https://blog.naver.com/...&#10;https://www.youtube.com/watch?v=..."></textarea></label>
+            </div>
+            <div id="ctPane-text" class="hidden">
+              <label class="fld"><span class="lb">텍스트 <em>제목 없이 붙여넣어도 됩니다</em></span><textarea id="ctText" rows="4" placeholder="잘 된 글, 메모, 고객 후기 등을 붙여넣으세요."></textarea></label>
+            </div>
+            <div id="ctPane-file" class="hidden">
+              <label class="fld"><span class="lb">파일 <em>txt · md · csv · json</em></span></label>
+              <div class="row" style="margin-bottom:8px">
+                <label class="btn sm" for="ctFile">📎 파일 선택</label>
+                <span class="hint" id="ctFileName">여러 개 선택할 수 있습니다</span>
+              </div>
+              <input type="file" id="ctFile" class="hidden" multiple accept=".txt,.md,.csv,.json,text/plain,application/json">
+              <div class="note" id="ctFileNote">파일은 브라우저 안에서만 읽습니다. 서버로 보내지 않습니다.</div>
+            </div>
+            <div class="row">
+              <button class="btn primary sm" type="button" id="btnCollectAdd">＋ 수집 목록에 넣기</button>
+              <button class="btn ghost sm" type="button" id="btnClearCollect">목록 비우기</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">📚</span>수집 목록</h3><span class="hint">클릭하면 글감 후보로 보냅니다</span></div>
+            <div class="list" id="collectList"></div>
+            <div class="empty" id="collectEmpty">아직 모은 재료가 없습니다. 링크·텍스트·파일을 넣어 보세요.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">♻️</span>잘된 글 리믹스</h3><span class="hint">같은 소재, 다른 각도</span></div>
+            <label class="fld"><span class="lb">원본 글 <em>성과가 좋았던 글을 그대로 붙여넣기</em></span><textarea id="remixSrc" rows="4" placeholder="예: 3개월 써 본 무선 청소기, 결국 남은 건 하나였습니다. ..."></textarea></label>
+            <div class="row">
+              <label class="chk"><input type="checkbox" id="remixKeepBrand" checked> <b>브랜드 규칙 유지</b></label>
+              <select id="remixCount" style="width:auto"><option value="3">3가지 각도</option><option value="5" selected>5가지 각도</option></select>
+              <button class="btn sm" type="button" id="btnRemix">리믹스 만들기</button>
+            </div>
+            <div class="list" id="remixOut" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">💡</span>글감 보드</h3><span class="hint" id="pickedIdea">선택 없음</span></div>
+            <div class="row" style="margin-bottom:8px">
+              <button class="btn primary sm" type="button" id="btnGenIdeas">AI 글감 6개</button>
+              <input type="text" id="myIdeaText" placeholder="내 글감 직접 추가" style="flex:1;min-width:120px">
+              <button class="btn sm" type="button" id="btnAddIdea">추가</button>
+            </div>
+            <div class="hint" style="margin-bottom:10px">🤖 AI 글감</div>
+            <div class="board" id="aiIdeas"></div>
+            <div class="hint" style="margin:12px 0 10px">✍️ 내 글감</div>
+            <div class="board" id="myIdeas"></div>
+            <div class="empty" id="ideasEmpty">글감이 없습니다. <b>AI 글감 6개</b>를 눌러 시작하세요.</div>
+            <div class="divider"></div>
+            <div class="row">
+              <button class="btn sm" type="button" id="btnIdeaToCarousel" disabled>→ 카드뉴스로</button>
+              <button class="btn sm" type="button" id="btnIdeaToPost" disabled>→ 포스트로</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">📡</span>PC 수집기 설정</h3><span class="hint">RSS · 유튜브</span></div>
+            <label class="fld"><span class="lb">RSS 주소 <em>한 줄에 하나</em></span><textarea id="rssFeeds" rows="2" placeholder="https://example.com/feed.xml"></textarea></label>
+            <label class="fld"><span class="lb">유튜브 채널 <em>URL 또는 @핸들</em></span><textarea id="ytChannels" rows="2" placeholder="@channel&#10;https://www.youtube.com/@example"></textarea></label>
+            <label class="fld"><span class="lb">수집 키워드 <em>쉼표로 구분</em></span><input type="text" id="rssKeywords" placeholder="무선청소기, 살림템, 1인가구"></label>
+            <div class="grid2">
+              <label class="fld"><span class="lb">하루 최대 수집</span><input type="number" id="rssPerDay" min="1" max="50" value="5"></label>
+              <label class="fld"><span class="lb">시간대</span><select id="rssTz"><option>Asia/Seoul</option><option>Asia/Tokyo</option><option>America/Los_Angeles</option><option>Europe/London</option></select></label>
+            </div>
+            <button class="btn sm wide" type="button" id="btnExportCollector">⬇ 수집 설정 JSON 내보내기</button>
+            <pre class="json" id="collectorJson" style="margin-top:10px">내보내기를 누르면 PC 수집기가 읽을 설정이 여기에 표시됩니다.</pre>
+            <p class="footnote">브라우저는 다른 사이트를 주기적으로 긁을 수 없습니다. RSS·유튜브 수집은 PC 패키지가 이 JSON을 읽어 처리하는 구조입니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 카드뉴스 ================= -->
+    <section class="panel" data-view="carousel" id="panel-carousel">
+      <div class="panel-head">
+        <div class="eyebrow">2 · 카드뉴스 Carousel</div>
+        <h2>슬라이드로 말하는 글</h2>
+        <p>5가지 비율 중 고르고, 스토리 구조를 선택하면 슬라이드 초안이 잡힙니다. 슬라이드마다 텍스트·배경·오버레이·CTA를 고친 뒤 <b>PNG 한 장</b> 또는 <b>ZIP 전체</b>로 저장하세요. ZIP은 순수 JS로 직접 만듭니다.</p>
+      </div>
+
+      <div class="card tight">
+        <div class="row between">
+          <div class="ratios" id="ratioBtns">
+            <button type="button" data-ratio="1:1">1:1</button>
+            <button type="button" data-ratio="3:4">3:4</button>
+            <button type="button" data-ratio="4:5" class="on">4:5</button>
+            <button type="button" data-ratio="9:16">9:16</button>
+            <button type="button" data-ratio="16:9">16:9</button>
+          </div>
+          <div class="row">
+            <select id="structSel" style="width:auto">
+              <option value="myth">오류 깨기</option>
+              <option value="problem" selected>문제 → 해결</option>
+              <option value="beforeafter">비포 · 애프터</option>
+              <option value="checklist">체크리스트</option>
+            </select>
+            <button class="btn primary sm" type="button" id="btnCarouselDraft">초안 만들기</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <span class="badge violet" id="ratioNow">4:5 · 1080×1350</span>
+          <span class="hint" id="carouselTopicHint">글감을 고르면 그 주제로 초안이 만들어집니다.</span>
+        </div>
+      </div>
+
+      <div class="carousel-wrap">
+        <div>
+          <div class="stage">
+            <canvas id="carouselCanvas" width="864" height="1080"></canvas>
+            <div class="stage-meta">
+              <span id="slideMeta">1 / 1</span>
+              <span>·</span>
+              <span id="slideSize">1080×1350</span>
+              <span>·</span>
+              <span id="slideKind">표지</span>
+            </div>
+            <div class="strip" id="slideStrip"></div>
+          </div>
+          <div class="card tight" style="margin-top:14px">
+            <div class="row between">
+              <div class="row">
+                <button class="btn sm" type="button" id="btnAddSlide">＋ 슬라이드</button>
+                <button class="btn sm" type="button" id="btnDupSlide">복제</button>
+                <button class="btn ghost sm" type="button" id="btnMoveLeft">←</button>
+                <button class="btn ghost sm" type="button" id="btnMoveRight">→</button>
+                <button class="btn danger sm" type="button" id="btnDelSlide">삭제</button>
+              </div>
+              <div class="row">
+                <button class="btn sm" type="button" id="btnCarouselPng">⬇ 이 슬라이드 PNG</button>
+                <button class="btn primary sm" type="button" id="btnCarouselZip">⬇ 전체 ZIP</button>
+              </div>
+            </div>
+            <p class="footnote" id="carouselStatus">초안을 만들면 슬라이드가 생깁니다. PNG는 현재 비율 그대로 저장됩니다.</p>
+            <div class="hidden" id="carouselDlWrap"><a id="carouselDl" class="btn sm" download>다운로드 준비됨</a></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">✏️</span>슬라이드 편집</h3><span class="hint" id="editSlideNo">#1</span></div>
+            <label class="fld"><span class="lb">머리말 <em>kicker</em></span><input type="text" id="slKicker" placeholder="3개월 써 본"></label>
+            <label class="fld"><span class="lb">제목 <em>크게 들어갑니다</em></span><textarea id="slTitle" rows="2" placeholder="무선청소기, 결국 남은 건 하나"></textarea></label>
+            <label class="fld"><span class="lb">본문 <em>2~4줄</em></span><textarea id="slBody" rows="3" placeholder="설명을 적으세요."></textarea></label>
+            <div class="row" style="margin-bottom:10px">
+              <label class="chk"><input type="checkbox" id="slBadge" checked> <b>번호 배지</b></label>
+              <label class="chk"><input type="checkbox" id="slCta"> <b>CTA 슬라이드</b></label>
+            </div>
+            <label class="fld"><span class="lb">배경</span>
+              <div class="inline">
+                <select id="slBgType" style="width:auto"><option value="gradient">그라데이션</option><option value="solid">단색</option><option value="image">내 이미지</option></select>
+                <input type="color" id="slBg1" value="#1b2436" aria-label="배경색 1">
+                <input type="color" id="slBg2" value="#0a0b0e" aria-label="배경색 2">
+              </div>
+            </label>
+            <label class="fld"><span class="lb">이미지 <em>배경으로 깔기</em></span>
+              <div class="row"><label class="btn sm" for="slImage">🖼 이미지 선택</label><span class="hint" id="slImageName">선택 안 됨</span></div>
+              <input type="file" id="slImage" class="hidden" accept="image/*">
+            </label>
+            <label class="fld"><span class="lb">어두운 오버레이 <span id="slOverlayVal">40%</span></span><input type="range" id="slOverlay" min="0" max="80" value="40"></label>
+            <div class="grid2">
+              <label class="fld"><span class="lb">글자색</span><input type="color" id="slText" value="#ffffff"></label>
+              <label class="fld"><span class="lb">포인트색</span><input type="color" id="slAccent" value="#c8f751"></label>
+            </div>
+            <label class="fld"><span class="lb">프리셋</span>
+              <select id="slPreset">
+                <option value="ink">잉크 · 라임</option>
+                <option value="violet">미드나잇 · 바이올렛</option>
+                <option value="paper">페이퍼 · 블랙</option>
+                <option value="mint">딥그린 · 민트</option>
+              </select>
+            </label>
+            <label class="chk"><input type="checkbox" id="slHandle" checked> <b>핸들 표시</b></label>
+            <input type="text" id="slHandleText" placeholder="@sosone" value="@sosone" style="margin-top:6px">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 포스트 · 스레드 ================= -->
+    <section class="panel" data-view="post" id="panel-post">
+      <div class="panel-head">
+        <div class="eyebrow">3 · 멀티채널 포스트 &amp; 스레드</div>
+        <h2>한 번 쓴 글, 6채널로</h2>
+        <p>Base 글을 쓰고 <b>채널별로 변환</b>하면 인스타·틱톡·유튜브·스레드·X·블로그 형식으로 나뉩니다. 브랜드 규칙의 <b>금지어는 입력하는 즉시</b> 검사되고, 스레드는 최대 15개까지 이어 쓸 수 있습니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">🧱</span>Base 글</h3>
+          <div class="row">
+            <button class="btn ghost sm" type="button" id="btnBaseFromIdea">선택한 글감 불러오기</button>
+            <button class="btn primary sm" type="button" id="btnBuildPlatforms">6채널로 변환</button>
+          </div>
+        </div>
+        <label class="fld"><span class="lb">원문 <em>여기 한 번만 쓰면 됩니다</em></span><textarea id="postBase" rows="6" placeholder="전하고 싶은 내용을 자유롭게 쓰세요. 예: 3개월 동안 무선청소기를 4개 써 보고 남은 기준은 딱 두 가지였습니다. 흡입력, 그리고 먼지통 비우는 시간."></textarea></label>
+        <div class="row">
+          <label class="chk"><input type="checkbox" id="postHashtags" checked> <b>해시태그 자동</b></label>
+          <label class="chk"><input type="checkbox" id="postBrand" checked> <b>브랜드 톤 적용</b></label>
+          <span class="hint" id="postBaseCount">0자</span>
+          <span class="spacer"></span>
+          <span class="badge danger hidden" id="bannedWarn">금지어 0</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3><span class="ico">📮</span>채널별 문구</h3><span class="hint" id="platLimitHint"></span></div>
+        <div class="plat-tabs" id="platTabs"></div>
+        <label class="fld"><span class="lb">선택한 채널 글 <em id="platName">인스타그램</em></span><textarea id="platText" rows="7"></textarea></label>
+        <div class="row between">
+          <div class="row">
+            <span class="counter" id="platCounter">0 / 2200</span>
+            <span class="chips" id="platBannedChips"></span>
+          </div>
+          <div class="row">
+            <button class="btn sm" type="button" id="btnPlatApply">이 채널 글 저장</button>
+            <button class="btn primary sm" type="button" id="btnCopyPlat">📋 복사</button>
+          </div>
+        </div>
+        <p class="footnote" id="platHelp">채널별 제한: 인스타 2,200자 · 틱톡 2,200자 · 유튜브 제목 100자/설명 5,000자 · 스레드 500자 · X 280자 · 블로그 제한 없음(권장 1,500자).</p>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <div class="card-head">
+            <h3><span class="ico">🧵</span>스레드 <span class="badge cyan" id="threadBadge">0 / 15</span></h3>
+            <div class="row">
+              <button class="btn ghost sm" type="button" id="btnThreadSplit">Base에서 나누기</button>
+              <button class="btn sm" type="button" id="btnAddPart">＋ 이어쓰기</button>
+            </div>
+          </div>
+          <div class="thread-list" id="threadList"></div>
+          <div class="empty" id="threadEmpty">스레드가 없습니다. <b>＋ 이어쓰기</b>로 첫 글을 추가하거나 Base에서 나눠 보세요. (최대 15개)</div>
+          <div class="row" style="margin-top:10px">
+            <span class="counter" id="threadTotal">총 0자</span>
+            <span class="spacer"></span>
+            <button class="btn sm" type="button" id="btnCopyThread">🧵 전체 복사</button>
+          </div>
+          <p class="footnote">스레드 한 칸은 500자까지. 넘으면 칸이 빨갛게 표시되고 전체 복사에서 경고합니다.</p>
+        </div>
+
+        <div>
+          <div class="card">
+            <div class="card-head"><h3><span class="ico">💬</span>첫 댓글</h3><span class="hint">본문에 넣기 아까운 링크·CTA</span></div>
+            <label class="fld"><span class="lb">첫 댓글 <em>첫 댓글에 링크를 두는 편이 도달에 유리합니다</em></span><textarea id="firstComment" rows="4" placeholder="자세한 비교표는 프로필 링크에 정리해 뒀습니다."></textarea></label>
+            <div class="row">
+              <button class="btn sm" type="button" id="btnRequiredIntoComment">필수 문구 넣기</button>
+              <button class="btn primary sm" type="button" id="btnCopyFirst">📋 첫 댓글 복사</button>
+            </div>
+          </div>
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">⚡</span>원클릭 복사</h3></div>
+            <div class="row">
+              <button class="btn sm" type="button" id="btnCopyAll">전체 세트 복사</button>
+              <span class="hint" id="copyStatus">본문 + 스레드 + 첫 댓글</span>
+            </div>
+            <p class="footnote">복사만 합니다. 게시 버튼은 직접 눌러야 합니다 — 브라우저가 대신 로그인해 올릴 수 없습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 클립 스튜디오 ================= -->
+    <section class="panel" data-view="clip" id="panel-clip">
+      <div class="panel-head">
+        <div class="eyebrow">4 · 쇼츠/릴스 · 롱폼 클립</div>
+        <h2>영상에서 필요한 구간만, 5개까지</h2>
+        <p>영상을 올려 구간을 자르고 최대 5개를 이어 붙입니다. 유튜브·인스타·틱톡 <b>Safe Zone 가이드</b>를 보며 제목·자막을 얹고, Gemini TTS 음성(문장 간격 조절)과 함께 <b>WebM</b>으로 내보냅니다.</p>
+      </div>
+
+      <div class="card tight">
+        <div class="row between">
+          <div class="row">
+            <label class="btn primary sm" for="clipFile">📁 영상 올리기</label>
+            <input type="file" id="clipFile" class="hidden" accept="video/*" multiple>
+            <span class="hint" id="clipFileHint">MP4 · WebM · MOV (브라우저가 읽는 형식) · 새로고침하면 다시 올려야 합니다</span>
+          </div>
+          <div class="row">
+            <span class="hint">Safe Zone</span>
+            <select id="safeSel" style="width:auto"><option value="youtube">유튜브 쇼츠</option><option value="instagram">인스타 릴스</option><option value="tiktok">틱톡</option><option value="off">끄기</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip-grid">
+        <div>
+          <div class="videostage">
+            <canvas id="clipCanvas" width="432" height="768"></canvas>
+          </div>
+          <video id="clipVideo" playsinline muted></video>
+          <div class="card tight" style="margin-top:12px">
+            <div class="card-head" style="margin-bottom:8px">
+              <h3><span class="ico">✂️</span>구간</h3>
+              <span class="hint" id="segTotal">0개 · 0.0초</span>
+            </div>
+            <label class="fld"><span class="lb">영상 선택 <em id="clipVideoName">—</em></span><select id="clipVideoSel"></select></label>
+            <div class="grid2">
+              <label class="fld"><span class="lb">시작 <span id="inVal">0.0s</span></span><input type="range" id="segIn" min="0" max="10" step="0.1" value="0"></label>
+              <label class="fld"><span class="lb">끝 <span id="outVal">0.0s</span></span><input type="range" id="segOut" min="0" max="10" step="0.1" value="0"></label>
+            </div>
+            <div class="row">
+              <button class="btn sm" type="button" id="btnAddSeg">＋ 이 구간 추가</button>
+              <button class="btn ghost sm" type="button" id="btnPreviewSeg">▶ 미리보기</button>
+              <button class="btn ghost sm" type="button" id="btnClearSegs">구간 비우기</button>
+            </div>
+            <div class="list" id="segs" style="margin-top:10px"></div>
+            <div class="empty" id="segEmpty">영상을 올리고 시작·끝을 맞춰 구간을 추가하세요. 최대 5개.</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">🎧</span>음성 (Gemini TTS)</h3><span class="badge" id="ttsMode">데모</span></div>
+            <label class="fld"><span class="lb">대본 <em>줄바꿈 = 문장</em></span><textarea id="ttsScript" rows="4" placeholder="3개월 써 봤습니다.&#10;남은 기준은 딱 두 가지였어요."></textarea></label>
+            <div class="grid2">
+              <label class="fld"><span class="lb">목소리</span><select id="ttsVoice"><option value="kore">Kore · 여성 따뜻</option><option value="aoede">Aoede · 여성 밝음</option><option value="charon">Charon · 남성 낮음</option><option value="puck">Puck · 남성 에너지</option><option value="fenrir">Fenrir · 남성 중저음</option></select></label>
+              <label class="fld"><span class="lb">문장 사이</span><select id="ttsGap"><option value="0">0초</option><option value="0.15">0.15초</option><option value="0.3" selected>0.3초</option><option value="0.5">0.5초</option></select></label>
+            </div>
+            <button class="btn wide sm" type="button" id="btnTts">🔊 음성 만들기</button>
+            <div class="row between" style="margin-top:8px"><span class="hint" id="ttsTotal">0문장 · 0.0초</span><span class="hint" id="ttsStatus"></span></div>
+            <div class="scroll-x" style="margin-top:6px">
+              <table class="timeline-tbl"><thead><tr><th>#</th><th>문장</th><th>구간</th><th>길이</th></tr></thead><tbody id="ttsTimeline"></tbody></table>
+            </div>
+          </div>
+
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">🅣</span>제목 · 자막</h3></div>
+            <label class="chk"><input type="checkbox" id="clipTitleOn" checked> <b>제목 표시</b></label>
+            <input type="text" id="clipTitle" value="3개월 써 본 무선청소기" placeholder="상단 제목">
+            <label class="chk" style="margin-top:8px"><input type="checkbox" id="clipSubOn" checked> <b>자막 표시</b></label>
+            <input type="text" id="clipSub" value="남은 기준은 두 가지" placeholder="하단 자막">
+            <div class="grid2" style="margin-top:8px">
+              <label class="fld"><span class="lb">자막 크기 <span id="subSizeVal">44</span></span><input type="range" id="clipSubSize" min="20" max="72" value="44"></label>
+              <label class="fld"><span class="lb">자막 위치 <span id="subPosVal">78%</span></span><input type="range" id="clipSubPos" min="55" max="92" value="78"></label>
+            </div>
+          </div>
+
+          <div class="card tight">
+            <div class="card-head" style="margin-bottom:8px"><h3><span class="ico">⬇️</span>내보내기</h3></div>
+            <button class="btn primary wide sm" type="button" id="btnExportClip">🎬 WebM 내보내기</button>
+            <div class="progress"><i id="clipProg"></i></div>
+            <p class="hint" id="clipExportInfo">구간과 음성이 준비되면 720×1280 WebM으로 저장합니다. (한 번에 최대 90초)</p>
+            <div class="hidden" id="clipDlWrap"><a id="clipDl" class="btn sm wide" download>다운로드</a></div>
+            <p class="footnote">영상은 브라우저 안에서만 처리됩니다. 업로드가 없고, 워터마크도 없습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 캘린더 ================= -->
+    <section class="panel" data-view="calendar" id="panel-calendar">
+      <div class="panel-head">
+        <div class="eyebrow">5 · 월간 캘린더</div>
+        <h2>언제, 어디에 올릴지</h2>
+        <p>날짜를 눌러 예약을 만들고, 칩을 <b>끌어서 다른 날로 옮기고</b>, 눌러서 수정합니다. 반복 일정은 주간으로 펼쳐지고, PC 스케줄러가 읽을 <b>JSON</b>으로 내보냅니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="cal-head">
+          <div class="row">
+            <button class="btn ghost sm" type="button" id="btnPrev">‹</button>
+            <span class="cal-title" id="calTitle">2026년 11월</span>
+            <button class="btn ghost sm" type="button" id="btnNext">›</button>
+            <button class="btn ghost sm" type="button" id="btnToday">오늘</button>
+          </div>
+          <div class="row">
+            <span class="badge" id="calCount">0개</span>
+            <button class="btn sm" type="button" id="btnCalExport">⬇ 스케줄 JSON</button>
+          </div>
+        </div>
+        <div class="cal-grid" id="calDowRow"></div>
+        <div class="cal-grid" id="calGrid" style="margin-top:4px"></div>
+        <div class="row" style="margin-top:10px">
+          <div class="cal-legend">
+            <span>🟣 스레드/X</span><span>🔴 인스타·유튜브</span><span>🟢 틱톡</span><span>🟡 블로그</span>
+          </div>
+          <span class="spacer"></span>
+          <span class="hint">칩을 끌어 옮기거나, 칩을 눌러 수정하세요.</span>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <div class="card-head"><h3><span class="ico">📝</span>예약 <span class="hint" id="evMode">새 예약</span></h3><button class="btn ghost sm" type="button" id="btnEvNew">새로 쓰기</button></div>
+          <div class="grid3">
+            <label class="fld"><span class="lb">날짜</span><input type="date" id="evDate"></label>
+            <label class="fld"><span class="lb">시각</span><input type="time" id="evTime" value="19:00"></label>
+            <label class="fld"><span class="lb">채널</span><select id="evPlatform"><option value="ig">인스타그램</option><option value="tt">틱톡</option><option value="yt">유튜브</option><option value="th">스레드</option><option value="x">X</option><option value="blog">블로그</option></select></label>
+          </div>
+          <label class="fld"><span class="lb">제목 <em>무엇을 올릴지</em></span><input type="text" id="evTitle" placeholder="무선청소기 카드뉴스"></label>
+          <div class="grid2">
+            <label class="fld"><span class="lb">반복</span><select id="evRepeat"><option value="none">반복 없음</option><option value="weekly">매주</option><option value="monthly">매월</option></select></label>
+            <label class="fld"><span class="lb">메모</span><input type="text" id="evNote" placeholder="첫 댓글 링크 준비"></label>
+          </div>
+          <div class="row">
+            <button class="btn primary sm" type="button" id="btnEvSave">저장</button>
+            <button class="btn danger sm" type="button" id="btnEvDelete">삭제</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3><span class="ico">📤</span>스케줄러 JSON</h3><span class="hint">PC 예약 발행용</span></div>
+          <div class="row" style="margin-bottom:8px">
+            <button class="btn sm" type="button" id="btnCalJson">미리보기 갱신</button>
+            <button class="btn primary sm" type="button" id="btnCalExport2">⬇ 내보내기</button>
+          </div>
+          <pre class="json" id="calJson">예약이 생기면 여기에 스케줄 JSON이 표시됩니다.</pre>
+          <p class="footnote">브라우저는 앱이 닫힌 뒤 스스로 게시할 수 없습니다. 이 JSON을 PC 스케줄러(sopost-scheduler)가 읽어 정해진 시각에 안내·업로드를 준비합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 성과 분석 ================= -->
+    <section class="panel" data-view="analytics" id="panel-analytics">
+      <div class="panel-head">
+        <div class="eyebrow">6 · 성과 분석 &amp; 리믹스 제안</div>
+        <h2>숫자는 직접 넣고, 해석은 AI가</h2>
+        <p>플랫폼 화면에서 본 조회·좋아요·댓글·저장을 입력하세요. 공식 API를 실시간으로 긁어올 수는 없지만, 넣은 숫자로 <b>참여율·채널 비교·잘 된 글</b>을 계산하고 <b>다음 글감과 리믹스</b>를 제안합니다.</p>
+      </div>
+
+      <div class="stat-grid" id="anaStats"></div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">📊</span>게시물 성과</h3>
+          <div class="row">
+            <button class="btn ghost sm" type="button" id="btnMetricDemo">예시 4개 채우기</button>
+            <button class="btn ghost sm" type="button" id="btnMetricClear">비우기</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="mtbl" id="metricsTable">
+            <thead><tr><th>채널</th><th>제목</th><th>날짜</th><th>조회</th><th>좋아요</th><th>댓글</th><th>저장</th><th>참여율</th><th></th></tr></thead>
+            <tbody id="metricsBody"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="metricsEmpty">아직 입력한 성과가 없습니다. <b>예시 4개 채우기</b>로 계산 방식을 확인해 보세요.</div>
+        <div class="grid3" style="margin-top:12px">
+          <label class="fld"><span class="lb">채널</span><select id="mPlatform"><option value="ig">인스타그램</option><option value="tt">틱톡</option><option value="yt">유튜브</option><option value="th">스레드</option><option value="x">X</option><option value="blog">블로그</option></select></label>
+          <label class="fld"><span class="lb">제목</span><input type="text" id="mTitle" placeholder="글 제목"></label>
+          <label class="fld"><span class="lb">날짜</span><input type="date" id="mDate"></label>
+        </div>
+        <div class="grid3">
+          <label class="fld"><span class="lb">조회</span><input type="number" id="mViews" min="0" value="0"></label>
+          <label class="fld"><span class="lb">좋아요</span><input type="number" id="mLikes" min="0" value="0"></label>
+          <label class="fld"><span class="lb">댓글 / 저장</span><div class="inline"><input type="number" id="mComments" min="0" value="0" style="flex:1"><input type="number" id="mSaves" min="0" value="0" style="flex:1"></div></label>
+        </div>
+        <button class="btn primary sm" type="button" id="btnMetricAdd">＋ 성과 추가</button>
+        <p class="footnote">참여율 = (좋아요 + 댓글 + 저장) ÷ 조회 × 100. 0으로 나누지 않도록 조회 0은 ‘—’로 표시합니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3><span class="ico">📈</span>채널별 참여율</h3><span class="hint" id="chartNote"></span></div>
+        <canvas id="chart" width="900" height="190"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3><span class="ico">🤖</span>다음 글감 · 리믹스 제안</h3>
+          <button class="btn primary sm" type="button" id="btnAIrecs">제안 받기</button>
+        </div>
+        <div class="list" id="recs"></div>
+        <div class="empty" id="recsEmpty">성과를 1개 이상 넣고 <b>제안 받기</b>를 누르면 다음 글감과 리믹스 각도를 제안합니다.</div>
+      </div>
+    </section>
+
+    <!-- ================= 브라우저 한계 ================= -->
+    <section class="panel" data-view="limits" id="panel-limits">
+      <div class="panel-head">
+        <div class="eyebrow">안내 · 정직하게</div>
+        <h2>브라우저에서 되는 것 / 안 되는 것</h2>
+        <p>이 앱은 서버가 없는 <b>단일 HTML</b>입니다. 그래서 못 하는 일이 분명히 있고, 그걸 숨기지 않습니다. 아래 표에 <b>가능 · 직접 입력 · 불가</b>로 나눠 적었습니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table class="cap-tbl">
+            <thead><tr><th>하고 싶은 일</th><th>이 앱</th><th>이유 / 대안</th></tr></thead>
+            <tbody>
+              <tr><td>브랜드 말투 학습 (A/B)</td><td><span class="cap yes">가능</span></td><td>붙여넣은 샘플 1~5개를 Gemini가 분석. 키가 없으면 데모 규칙.</td></tr>
+              <tr><td>카드뉴스 제작 · PNG/ZIP</td><td><span class="cap yes">가능</span></td><td>Canvas로 5비율 렌더, ZIP은 순수 JS(ZIP 스펙 stored)로 생성.</td></tr>
+              <tr><td>6채널 문구 변환 · 복사</td><td><span class="cap yes">가능</span></td><td>채널 제한 길이에 맞춰 자동 분할·축약.</td></tr>
+              <tr><td>스레드 15개 이어쓰기</td><td><span class="cap yes">가능</span></td><td>500자 제한 검사 포함. 실제 게시는 직접.</td></tr>
+              <tr><td>영상 자르기 · 5구간 연결 · WebM</td><td><span class="cap yes">가능</span></td><td>Canvas + MediaRecorder. 브라우저가 디코딩 가능한 형식만.</td></tr>
+              <tr><td>Gemini TTS (Kore 등 5종)</td><td><span class="cap yes">가능</span></td><td>키 필요. 없으면 브라우저 합성음(데모).</td></tr>
+              <tr><td>월간 예약 · 반복 · JSON</td><td><span class="cap yes">가능</span></td><td>이 기기에 저장. JSON은 PC 스케줄러용.</td></tr>
+              <tr><td>조회·좋아요·댓글·저장 수집</td><td><span class="cap part">직접 입력</span></td><td>공식 API 실시간 조회는 앱 자격·서버가 필요합니다. 숫자를 붙여넣으면 분석은 자동.</td></tr>
+              <tr><td>예약 시각 자동 게시</td><td><span class="cap part">PC 스케줄러</span></td><td>브라우저 탭이 닫히면 아무것도 못 합니다. JSON을 PC가 읽어 알림·업로드 준비.</td></tr>
+              <tr><td>인스타·틱톡 공식 OAuth 연동</td><td><span class="cap no">불가</span></td><td>비즈니스 계정·앱 심사·서버 콜백 필요. 정적 앱은 자격 증명을 안전히 보관할 수 없습니다.</td></tr>
+              <tr><td>DM·댓글 실시간 감시</td><td><span class="cap no">불가</span></td><td>웹훅 수신 서버 필요. 브라우저는 백그라운드에서 대기할 수 없습니다.</td></tr>
+              <tr><td>다른 계정 자동 로그인·대리 게시</td><td><span class="cap no">불가</span></td><td>플랫폼 약관 위반이며 계정 정지 위험. 앱은 ‘복사’까지만 합니다.</td></tr>
+              <tr><td>실시간 성과 스크래핑</td><td><span class="cap no">불가</span></td><td>CORS·로그인·차단 정책. 화면에서 본 숫자를 입력하는 방식만 안전합니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">표에 없는 기능은 <b>되는지 확인되지 않은 것</b>입니다. 확인 없이 “됩니다”라고 말하지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3><span class="ico">🧾</span>데이터가 가는 곳</h3></div>
+        <ul class="ablist" style="font-size:12.5px;color:var(--dim)">
+          <li>Gemini 키와 모든 작업물은 이 브라우저 <span class="kbd">localStorage</span>에만 저장됩니다.</li>
+          <li>외부로 나가는 요청은 <b>Gemini API 한 곳</b>뿐입니다(키가 있을 때). 폰트·이미지·분석 도구를 부르지 않습니다.</li>
+          <li>영상·이미지는 서버로 올라가지 않고 브라우저 메모리에서만 처리됩니다.</li>
+          <li>브라우저 데이터를 지우면 작업물도 함께 사라집니다. 중요한 결과물은 PNG/ZIP/WebM/JSON으로 내려받아 두세요.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footernote">SOPOST · Posteady 스타일에서 착안한 독립 제작 앱(비공식) — 단일 HTML · 외부 CDN 0 · 데이터는 이 브라우저에만</div>
+  </main>
+</div>
+
+<div id="toast"><span class="ico">ℹ️</span><span id="toastMsg"></span></div>
